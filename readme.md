@@ -3,7 +3,7 @@
 Este repositório visa construir um projeto PHP no padrão de arquitetura MVC(Model, View, Controller), sem utilizar um framework.
 Foi utilizado o Composer para fazer o autoloads das classes e namespaces no padrão psr-4. Mas não é necessário instalá-lo. 
 
-### Pré-reuisitos
+### Pré-requisitos
 
 ```
 PHP >= v5.6
