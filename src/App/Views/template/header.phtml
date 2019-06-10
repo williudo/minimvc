@@ -1,0 +1,23 @@
+<?php include_once 'head.phtml';?>
+<body>
+	<header>
+		<div class="col-md-2 offset-md-10 login-widget">
+            <?php if(!logged()): ?><a href="/entrar">Entrar</a><?php else: ?><a  href="/sair">Sair</a><?php endif ?>
+		</div>	
+		<h1>Supermercado Carrefive</h1>
+		<nav>
+			<?php if(!logged()): ?><a href="/">Ínicio</a>
+                <a href="">Opção 1</a>
+			    <a href="">Opção 2</a>
+			    <a href="">Sobre</a>
+			    <a href="">Contato</a>
+            <?php else: ?>
+                <a href="/painel/produtos">Produtos</a>
+            <?php endif ?>
+
+		</nav>
+	</header>
+
+
+
+

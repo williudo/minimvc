@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12 conteudo">
+                <form class="form-horizontal" action="/painel/produtos/<?= strtolower($action)?>" method="POST">
+                    <fieldset>
+                        <h2 class="titulo-pagina"><?= ucfirst($action)?> Produto</h2>
+
+                        <div class="form-group">
+                            <?php if('editar' == strtolower($action)): ?>
+                                <input name="id_produto" type="hidden" value="<?= $produto['id_produto'] ?>">
+                            <?php endif; ?>
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <label class="control-label" for="nome">Nome do produto</label>
+                                    <input id="nome" name="nome" type="text" value="<?= (isset($produto['nome'])) ? $produto['nome'] : '' ?>"  placeholder="Ex. Veja Perfumes da Natureza"
+                                           class="form-control input-md" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label" for="id_unidades_medida">Unidade de medida</label>
+                                    <select id="id_unidades_medida" name="id_unidades_medida" class="form-control" required>
+                                        <option value="">Selecione</option>
+                                        <?php foreach($unidades_medida as $un): ?>
+                                            <option value="<?= $un['id_unidades_medida'] ?>" <?= (isset($produto['id_unidades_medida']) && $produto['id_unidades_medida'] == $un['id_unidades_medida']) ? 'selected' : '' ?>><?= $un['nome'] ?> (<?= $un['sigla'] ?>)</option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label" for="valor">Preço</label>
+                                    <input id="valor" name="valor" type="text" placeholder="Ex. R$ 23,99"
+                                           class="form-control input-md" value="<?= (isset($produto['valor'])) ? $produto['valor'] : '' ?>" required>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <div class="col-md-12">
+                                    <label class="control-label" for="descricao">Descrição do produto</label>
+                                    <input maxlength="50" id="descricao" name="descricao" type="text" class="form-control input-md" value="<?= (isset($produto['descricao'])) ? $produto['descricao'] : '' ?>" required>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <label class="control-label" for="id_status">Situação</label>
+                                    <select id="id_status" name="id_status" class="form-control" required>
+                                        <option value="">Selecione</option>
+                                        <option value="0"<?= (isset($produto['id_unidades_medida']) && $produto['id_unidades_medida'] == 0) ? 'selected' : '' ?>>Inativo</option>
+                                        <option value="1" <?= (isset($produto['id_unidades_medida']) && $produto['id_unidades_medida'] == 1) ? 'selected' : '' ?>>Ativo</option>
+                                        <option value="2" <?= (isset($produto['id_unidades_medida']) && $produto['id_unidades_medida'] == 2) ? 'selected' : '' ?>>Excluído</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 offset-md-4" style="margin-top: 20px;">
+                                    <button class="btn btn-success fa-pull-right" type="submit"><i class="fa fa-plus"></i> Cadastrar</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<?php if(isset($_SESSION['toastr'])) : ?>
+<script>
+    var toastr_type = "<?= $_SESSION['toastr']['type'];?>";
+    var toastr_msg  = "<?= $_SESSION['toastr']['msg'];?>";
+</script>
+<?php endif; ?>
+
